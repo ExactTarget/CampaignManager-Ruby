@@ -1,0 +1,75 @@
+%div{ :class => 'row-fluid' }
+	%div{ :id => 'well', :class => 'well sidebar-nav span3' }
+		%ul{ :class => 'nav nav-list' }
+			%li{ :class => 'nav-header' } Campaigns
+			- if !@camps.nil?
+				- @camps.each do |camp|
+					%li
+						%a{ :href => "/campaign/#{camp['id']}", :style => "color: ##{camp['color']}" }= camp['name']
+	%div{ :class => 'row-fluid span9', :id => 'campaign' }
+		%div{ :class => 'page-header' }
+			- if !@campaign.nil? && @campaign.has_key?('details')
+				%h1{ :style => "color: ##{@campaign['details']['color']}" }= @campaign['details']['name']
+		%div
+			- if !@campaign.nil? && @campaign.has_key?('details')
+				%div{ :class => 'span6' }
+					%p
+						%h4
+							%strong{ :class => 'muted' } Name:
+							= @campaign['details']['name']
+					%p
+						%h4
+							%strong{ :class => 'muted' } Description:
+							= @campaign['details']['description']
+					%p
+						%h4
+							%strong{ :class => 'muted' } ID:
+							%span{:id => "campaignid"} #{@campaign['details']['id']}
+					%p
+				%div{ :class => 'span6' }
+					%p
+						%h4
+							%strong{ :class => 'muted' } Created On:
+							= @campaign['details']['createdDate'].to_date
+					%p
+						%h4
+							%strong{ :class => 'muted' } Modified On:
+							= @campaign['details']['modifiedDate'].to_date
+		%div{ :class => 'page-header' }
+			%h3 Assets
+		%div
+			%ul{:id => 'assetList'}
+				- if !@campaign.nil? && @campaign.has_key?('assets')
+					- @campaign['assets'].each do |asset|
+						%li
+							%span{ :class => 'span3' }
+								%h3
+									%strong{ :class => 'muted' } Type:
+									= asset['type']
+							%span{ :class => 'span3' }
+								%h3
+									%strong{ :class => 'muted' } Asset ID:
+									= asset['id']
+							%span{ :class => 'span3' }
+								%h3
+									%strong{ :class => 'muted' } Created Date:
+									= asset['createdDate'].to_date
+	%div{ :class => 'row-fluid span9'}
+		%div{ :class => 'page-header' }
+			%h3 Add Asset
+		%div{ :class => 'span4 dtl'}
+			%div{ :id => 'typeDropDown', :class => 'input-append dropdown combobox' }
+				%input{ :type => 'text', :name => 'type', :id => 'type', :placeholder => 'Please Choose a type' }
+				%button{ :class => 'btn', :'data-toggle' => 'dropdown' }
+					%i{ :class => 'caret' }
+				%ul{ :class => 'dropdown-menu' }
+					%li <a href="#">EMAIL</a>
+					%li <a href="#">LIST</a>
+		%div{ :class => 'span3' }
+			%div{ :id => 'itemDropDown', :class => 'input-append dropdown combobox' }
+				%input{ :item => 'text', :name => 'item', :id => 'item', :placeholder => 'Please Choose a item' }
+				%button{ :class => 'btn', :'data-toggle' => 'dropdown' }
+					%i{ :class => 'caret' }
+				%ul{ :class => 'dropdown-menu', :id => 'itemList' }
+		%div{ :class => 'span3' }				
+			%button{ :id=> 'saveCampaignAsset', :class => 'btn btn-primary btn-medium' } Add

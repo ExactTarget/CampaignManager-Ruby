@@ -1,0 +1,122 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activemodel (3.2.11)
+      activesupport (= 3.2.11)
+      builder (~> 3.0.0)
+    activesupport (3.2.11)
+      i18n (~> 0.6)
+      multi_json (~> 1.0)
+    akami (1.2.0)
+      gyoku (>= 0.4.0)
+      nokogiri (>= 1.4.0)
+    backports (2.8.2)
+    bson (1.8.2)
+    bson_ext (1.8.2)
+      bson (~> 1.8.2)
+    builder (3.0.4)
+    contest (0.1.2)
+    daemons (1.1.9)
+    eventmachine (1.0.0)
+    eventmachine (1.0.0-x86-mingw32)
+    faker (0.3.1)
+    gyoku (1.0.0)
+      builder (>= 2.1.2)
+    haml (3.1.7)
+    hoe (3.5.0)
+      rake (>= 0.8, < 11.0)
+    httpi (2.0.2)
+      rack
+    i18n (0.6.1)
+    json (1.7.6)
+    jwt (0.1.6)
+      multi_json (>= 1.0)
+    maruku (0.6.1)
+      syntax (>= 1.0.0)
+    mongo (1.8.2)
+      bson (~> 1.8.2)
+    mongo_mapper (0.12.0)
+      activemodel (~> 3.0)
+      activesupport (~> 3.0)
+      plucky (~> 0.5.2)
+    multi_json (1.5.0)
+    nokogiri (1.5.6)
+    nokogiri (1.5.6-x86-mingw32)
+    nori (2.0.3)
+    override (0.0.10)
+    plucky (0.5.2)
+      mongo (~> 1.5)
+    quietbacktrace (0.1.1)
+      hoe (>= 1.3.0)
+    rack (1.5.1)
+    rack-flash (0.1.2)
+      rack
+    rack-protection (1.3.2)
+      rack
+    rack-test (0.5.3)
+      rack (>= 1.0)
+    rake (10.0.3)
+    sass (3.2.5)
+    savon (2.1.0)
+      akami (~> 1.2.0)
+      builder (>= 2.1.2)
+      gyoku (~> 1.0.0)
+      httpi (~> 2.0.2)
+      nokogiri (>= 1.4.0)
+      nori (~> 2.0.3)
+      wasabi (~> 3.0.0)
+    sinatra (1.3.4)
+      rack (~> 1.4)
+      rack-protection (~> 1.3)
+      tilt (~> 1.3, >= 1.3.3)
+    sinatra-contrib (1.3.2)
+      backports (>= 2.0)
+      eventmachine
+      rack-protection
+      rack-test
+      sinatra (~> 1.3.0)
+      tilt (~> 1.3)
+    spawn (0.1.3)
+    stories (0.1.3)
+      contest (~> 0.1)
+    syntax (1.0.0)
+    thin (1.5.0)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
+    tilt (1.3.3)
+    wasabi (3.0.0)
+      httpi (~> 2.0)
+      nokogiri (>= 1.4.0)
+    webrat (0.7.0)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
+
+PLATFORMS
+  ruby
+  x86-mingw32
+
+DEPENDENCIES
+  bson_ext
+  contest (= 0.1.2)
+  faker (= 0.3.1)
+  haml
+  json
+  jwt
+  maruku
+  mongo
+  mongo_mapper
+  override (= 0.0.10)
+  quietbacktrace
+  rack
+  rack-flash
+  rack-test (= 0.5.3)
+  sass
+  savon
+  sinatra
+  sinatra-contrib
+  spawn (= 0.1.3)
+  stories (= 0.1.3)
+  thin
+  webrat (= 0.7.0)

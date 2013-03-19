@@ -1,0 +1,26 @@
+/* Insert CSS Markup Here - then run
+ * sass --watch sass/main.sass:main.css
+ * to compile a new CSS */
+html, body {
+  margin: 10px; }
+
+#create form div.color {
+  height: auto; }
+#create form div span {
+  padding: 25px 0;
+  display: block; }
+#create form ul li {
+  margin: 5px; }
+  #create form ul li a {
+    padding: 5px;
+    color: white; }
+
+#campaign div {
+  overflow: hidden; }
+#campaign ul {
+  margin: 0; }
+  #campaign ul li {
+    padding: 10px;
+    background: #f7f7f7;
+    list-style: none;
+    overflow: hidden; }

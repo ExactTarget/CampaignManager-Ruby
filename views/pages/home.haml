@@ -1,0 +1,37 @@
+%div{ :class => 'row-fluid' }
+	%div{ :id => 'well', :class => 'well sidebar-nav span3' }
+		%ul{ :class => 'nav nav-list' }
+			%li{ :class => 'nav-header' } Campaigns
+			- if !@camps.nil?
+				- @camps.each do |camp|
+					%li
+						%a{ :href => "/campaign/#{camp['id']}", :style => "color: ##{camp['color']}" }= camp['name']
+	%div{ :id => 'create', :class => 'span9' }
+		%div{ :class => 'page-header' }
+			%h1 Create Campaign
+		%form{ :name => 'campaign', :action => '/campaign', :method => 'post' }
+			%div
+				%div{ :class => 'span4 dtl' }
+					%label{ :class => 'control-label', :for => 'name' } Name:
+					%input{ :type => 'text', :name => 'name', :id => 'name', :placeholder => 'Enter the Campaign Name' }
+					%label{ :class => 'control-label', :for => 'description' } Description:
+					%textarea{ :name => 'description', :id => 'description', :rows => 3 }
+					%div
+						%span
+							%button{ :type => 'submit', :class => 'btn btn-primary btn-large' }
+								%i{ :class => 'icon-ok icon-white' }
+								Create Campaign
+							%button{ :type => 'reset', :class => 'btn  btn-large' }
+								%i{ :class => 'icon-refresh icon' }
+								Reset
+				%div{ :class => 'span4 color' }
+					%div{ :id => 'myCombobox', :class => 'input-append dropdown combobox' }
+						%label{ :class => 'control-label', :for => 'color' } Color:
+						%input{ :type => 'text', :name => 'color', :id => 'color', :placeholder => 'Please Choose a Campaign Color' }
+						%button{ :class => 'btn', :'data-toggle' => 'dropdown' }
+							%i{ :class => 'caret' }
+						%ul{ :class => 'dropdown-menu color' }
+							- if !@colors.nil?
+								- @colors.each do |c|
+									%li <a href="#" style="background: ##{c}">#{c}</a>
+
