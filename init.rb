@@ -25,6 +25,7 @@ require 'sinatra/reloader'
 
 # Load all application files.
 Dir["#{File.dirname(__FILE__)}/app/**/*.rb"].each do |file|
+	
   require file
 end
 
@@ -40,6 +41,7 @@ class Main < Sinatra::Base
 
 	set :app_file, __FILE__ 
 	set :haml, { :format => :html5 }
+	set :protection, :except => [:frame_options,:http_origin]
 	use Sass::Plugin::Rack
 		
 	configure do

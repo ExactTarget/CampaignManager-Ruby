@@ -457,8 +457,14 @@ class ET_Get < ET_Constructor
 		end		
 
 		if filter then
-			obj['Filter'] = filter
-			obj[:attributes!] = { 'Filter' => { 'xsi:type' => 'tns:SimpleFilterPart' } }
+			if filter.has_key?('LogicalOperator') then 
+				obj['Filter'] = filter
+				obj[:attributes!] = { 'Filter' => { 'xsi:type' => 'tns:ComplexFilterPart' }}
+				obj['Filter'][:attributes!] = { 'LeftOperand' => { 'xsi:type' => 'tns:SimpleFilterPart' }, 'RightOperand' => { 'xsi:type' => 'tns:SimpleFilterPart' }}
+			else 
+				obj['Filter'] = filter
+				obj[:attributes!] = { 'Filter' => { 'xsi:type' => 'tns:SimpleFilterPart' } }
+			end 
 		end
 		
 		response = authStub.auth.call(:retrieve, :message => {
@@ -875,10 +881,9 @@ class ET_DataExtension < ET_CUDSupport
 		if @props.is_a? Array then
 			multiDE = []
 			@props.each { |currentDE|
-				
+				currentDE['Fields'] = {}
+				currentDE['Fields']['Field'] = []	
 				currentDE['columns'].each { |key|
-					currentDE['Fields'] = {}
-					currentDE['Fields']['Field'] = []				
 					currentDE['Fields']['Field'].push(key)					
 				}
 				currentDE.delete('columns')				
@@ -1124,6 +1129,13 @@ class ET_ContentArea < ET_CUDSupport
 	def initialize
 		super
 		@obj = 'ContentArea'
+	end	
+end
+
+class ET_Folder < ET_CUDSupport	
+	def initialize
+		super
+		@obj = 'DataFolder'
 	end	
 end
 

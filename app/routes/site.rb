@@ -1,10 +1,24 @@
 class Main < Sinatra::Base
 	
-	get '/login' do
-		if !session.has_key?(:authstub) then
+	## GET Login Endpoint configured so that the ClientID/Client Secret will be loaded from the config.yaml 
+	get '/login' do		
+		if !session.has_key?(:authstub) || session[:authstub].nil? then
 			session[:authstub] = ET_Client.new
 		end
 		redirect '/'
+	end	
+	
+	## POST Login Endpoint configured so that the JWT will be used to provide context for the application
+	post '/login' do		
+		if !session.has_key?(:authstub) || session[:authstub].nil? then
+			session[:authstub] = ET_Client.new(false, false, request.POST)
+			p 'session created'
+		end
+		redirect '/'
+	end	
+	
+	get '/logout' do
+		session[:authstub] = nil
 	end	
 	
 	## 1. Display Create Campaign Form with Left Nav
@@ -13,7 +27,6 @@ class Main < Sinatra::Base
 		camp = ET_Campaign.new
 		camp.authStub = session[:authstub]		
 		campResponse = camp.get
-		#p campResponse
 		@camps = campResponse.results['items']
 		
 		# Define Colors for the Form's Drop Down
